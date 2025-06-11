@@ -15,7 +15,7 @@ This is a simple and fun command-line To-Do app built with Go. You can add, view
 
 Here’s a quick look at the CLI To-Do App in action:
 
-![CLI To-Do App Demo](demo.gif)
+<img src="demo.gif" width="600"/>
 
 ---
 
@@ -37,24 +37,6 @@ go build -o todo
 - 👋 Exit the app
 
 All tasks are saved in a local `task.json` file.
-
----
-
-## ✨ Example
-
-```text
-----------------------
-CLI TO-DO APLLICATION
-----------------------
-
-OPTIONS
-1. Add a Task
-2. View Tasks
-3. Delete Task
-4. Mark Task as Complete
-5. Exit the application
-------------------------
-```
 
 ---
 
