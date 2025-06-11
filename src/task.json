@@ -1,1 +1,1 @@
-[{"description":"buy tea","completed":false},{"description":"eat","completed":false},{"description":"hop","completed":false},{"description":"use","completed":false}]
+[{"description":"buy tea","completed":false},{"description":"eat","completed":true},{"description":"hop","completed":false},{"description":"use","completed":false}]
