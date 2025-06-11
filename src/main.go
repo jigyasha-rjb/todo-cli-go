@@ -25,8 +25,8 @@ func main(){
 		fmt.Println("\nOPTIONS")
 		fmt.Println("1. Add a Task")
 		fmt.Println("2. View Tasks")
-		fmt.Println("3. Delete Task")
-		fmt.Println("4. Mark Task as Complete")
+		fmt.Println("3. Mark Task as Complete")
+		fmt.Println("4. Delete Task")
 		fmt.Println("5. Exit the application")
 		fmt.Println("------------------------")
 		fmt.Println("Enter your choice: ")
@@ -42,9 +42,9 @@ func main(){
 			case "2":
 				viewTask()
 			case "3":
-				deleteTask()
-			case "4":
 				markTaskAsComplete()
+			case "4":
+				deleteTask()
 			case "5":
 				fmt.Println("Exiting ...")
 				return
