@@ -28,7 +28,7 @@ func main(){
 		fmt.Println("3. Delete Task")
 		fmt.Println("4. Mark Task as Complete")
 		fmt.Println("5. Exit the application")
-		fmt.Println("----------------------")
+		fmt.Println("------------------------")
 		fmt.Println("Enter your choice: ")
 
 		reader := bufio.NewReader(os.Stdin)
@@ -44,13 +44,14 @@ func main(){
 			case "3":
 				deleteTask()
 			case "4":
-				//markTaskAsComplete()
+				markTaskAsComplete()
 			case "5":
 				fmt.Println("Exiting ...")
+				return
 			default:
 				fmt.Println("Invalid Choice. Enter number from 1-5.")
 				fmt.Println("Please Try Again!")
-				fmt.Println("----------------------")
+				fmt.Println("------------------------")
 		}
 	}
 }
@@ -167,4 +168,39 @@ func deleteTask(){
 	fmt.Println("\nTASK DELETED!")
 	fmt.Println("----------------------")
 }
-	
+
+func markTaskAsComplete(){
+	tasks, err := loadTasks()
+	if err != nil { 
+		fmt.Printf("Error loading tasks: %v\n", err)
+		return
+	}
+
+	if len(tasks) == 0 {
+		fmt.Println("No tasks found.")
+		return
+	}
+
+	viewTask()
+
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter the task to mark as completed: ")
+	input, _ := reader.ReadString('\n')
+	input = strings.TrimSpace(input)
+
+	taskNum, err := strconv.Atoi(input)
+
+	if err != nil || taskNum < 1 || taskNum > len(tasks){
+		fmt.Println("Invalid Task ID")
+	}
+
+	tasks[taskNum-1].Completed = true
+
+	err = saveTasks(tasks)
+	if err != nil{
+		fmt.Printf("Error saving tasks: %v\n", err)
+		return
+	}
+	fmt.Println("\nTASK MARKED AS COMPLETED!")
+	fmt.Println("----------------------------")
+}
