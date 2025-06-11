@@ -39,7 +39,7 @@ func main(){
 			case "1":
 				addTask()
 			case "2":
-				//viewTask()
+				viewTask()
 			case "3":
 				//deleteTask()
 			case "4":
@@ -111,5 +111,23 @@ func addTask(){
 	fmt.Println("----------------------")
 }
 
+func viewTask(){
+	tasks, err := loadTasks()
+	if err != nil { 
+		fmt.Printf("Error loading tasks: %v\n", err)
+		return
+	}
 
+	if len(tasks) == 0 {
+		fmt.Println("No tasks found.")
+		return
+	}
+	fmt.Println("-------------------------------------")
+	fmt.Printf("%-5s %-20s %s\n","ID", "Description","Completed")
+	fmt.Println("-------------------------------------")
+	for i, task:= range tasks{
+		fmt.Printf("%5d %-20s %t\n", i+1, task.Description, task.Completed)
+	}
+	fmt.Println("-------------------------------------")
+}
 	
