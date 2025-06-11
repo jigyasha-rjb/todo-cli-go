@@ -21,13 +21,14 @@ func main(){
 	fmt.Println("----------------------")
 	//Infinite for loop
 	for {
-		fmt.Println("Task List")
+		fmt.Println("\nOPTIONS")
 		fmt.Println("1. Add a Task")
 		fmt.Println("2. View Tasks")
 		fmt.Println("3. Delete Task")
 		fmt.Println("4. Mark Task as Complete")
 		fmt.Println("5. Exit the application")
 		fmt.Println("----------------------")
+		fmt.Println("Enter your choice: ")
 
 		reader := bufio.NewReader(os.Stdin)
 		choice, _ := reader.ReadString('\n')
@@ -48,7 +49,7 @@ func main(){
 			default:
 				fmt.Println("Invalid Choice. Enter number from 1-5.")
 				fmt.Println("Please Try Again!")
-
+				fmt.Println("----------------------")
 		}
 	}
 }
@@ -88,6 +89,7 @@ func saveTasks(tasks []Task) error {
 
 func addTask(){
 	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("----------------------")
 	fmt.Println("Enter Task Description: ")
 	description, _ := reader. ReadString('\n')
 	description = strings.TrimSpace(description)
@@ -105,8 +107,8 @@ func addTask(){
 		fmt.Printf("Error saving tasks: %v\n", err)
 		return
 	}
-	fmt.Println("Task Added Successfully.")
-
+	fmt.Println("\nTASK ADDED!")
+	fmt.Println("----------------------")
 }
 
 
