@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -41,7 +42,7 @@ func main(){
 			case "2":
 				viewTask()
 			case "3":
-				//deleteTask()
+				deleteTask()
 			case "4":
 				//markTaskAsComplete()
 			case "5":
@@ -129,5 +130,41 @@ func viewTask(){
 		fmt.Printf("%5d %-20s %t\n", i+1, task.Description, task.Completed)
 	}
 	fmt.Println("-------------------------------------")
+}
+
+func deleteTask(){
+	tasks, err := loadTasks()
+	if err != nil { 
+		fmt.Printf("Error loading tasks: %v\n", err)
+		return
+	}
+
+	if len(tasks) == 0 {
+		fmt.Println("No tasks found.")
+		return
+	}
+
+	viewTask()
+
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter the task to delete: ")
+	input, _ := reader.ReadString('\n')
+	input = strings.TrimSpace(input)
+
+	taskNum, err := strconv.Atoi(input)
+
+	if err != nil || taskNum < 1 || taskNum > len(tasks){
+		fmt.Println("Invalid Task ID")
+	}
+
+	tasks = append(tasks[:taskNum-1], tasks[taskNum:]...)
+
+	err = saveTasks(tasks)
+	if err != nil{
+		fmt.Printf("Error saving tasks: %v\n", err)
+		return
+	}
+	fmt.Println("\nTASK DELETED!")
+	fmt.Println("----------------------")
 }
 	
